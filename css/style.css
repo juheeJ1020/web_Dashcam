@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+  height: 100%;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #1a2332;
+    color: #e0e7ef;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrapper {
+  flex: 1;
+  }
+  
+  /* ✅ 고정 헤더 */
+  .site-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #2d4053 0%, #354252 100%);
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(90, 118, 136, 0.3);
+  }
+
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5em;
+  }
+  
+  .main-nav a {
+    text-decoration: none;
+    color: #b8c5d6;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 8px 15px;
+    border-radius: 5px;
+  }
+  
+  .main-nav a:hover {
+    color: #ffffff;
+    background-color: rgba(90, 118, 136, 0.3);
+  }
+ 
+  
+  /* ✅ 푸터 */
+  .site-footer {
+    padding: 2em;
+    background: linear-gradient(135deg, #1f2936 0%, #242d3d 100%);
+    text-align: center;
+    font-size: 0.9em;
+    color: #b8c5d6;
+    border-top: 1px solid rgba(90, 118, 136, 0.3);
+  }
+  
+  .footer-links a {
+    color: #9db3c7;
+    text-decoration: none;
+    margin: 0 0.3em;
+    transition: color 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: #ffffff;
+  }
+  
+  /* ✅ 반응형 */
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2em;
+    }
+  
+    .hero p {
+      font-size: 1em;
+    }
+  
+    .main-nav ul {
+      flex-direction: column;
+      gap: 1em;
+    }
+  }
+  

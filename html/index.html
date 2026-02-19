@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Blackbox Dashcam</title>
+
+  <!-- 이 페이지 전용 스타일 (부드러운 베이지 톤 + 반응형 + 스크롤 등장) -->
+  <style>
+    :root {
+      --bg-beige: #f5eee3;
+      --bg-beige-deep: #f0e2ce;
+      --card-bg: #ffffff;
+      --accent: #c08a4d;
+      --accent-soft: #e0b783;
+      --text-main: #3b2f2f;
+      --text-sub: #6b5b4b;
+      --header-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --transition-fast: 0.25s ease-out;
+      --transition-slow: 0.6s ease-out;
+      --page-padding: 0px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #f9f2e7, var(--bg-beige));
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* 공통 레이아웃 래퍼 */
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 헤더 - 메인 색상 자연스럽게 연결 */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom,
+          rgba(245, 238, 227, 0.98),
+          rgba(245, 238, 227, 0.92),
+          rgba(245, 238, 227, 0.75));
+      box-shadow: var(--header-shadow);
+    }
+
+    .header-inner {
+      width: 100%;
+      margin: 0;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #dfb27a, #c48b4c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .main-nav ul {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+    }
+
+    .main-nav a {
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: background-color var(--transition-fast), color var(--transition-fast),
+        transform 0.15s ease-out;
+    }
+
+    .main-nav a:hover {
+      background-color: rgba(192, 138, 77, 0.08);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .main-nav a.is-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(192, 138, 77, 0.3);
+    }
+
+    /* 메인 */
+    main {
+      flex: 1;
+      background: linear-gradient(to bottom, var(--bg-beige), var(--bg-beige-deep));
+    }
+
+    .main-inner {
+      width: 100%;
+      margin: 0;
+      padding: 32px var(--page-padding) 56px;
+    }
+
+    /* Hero 섹션 */
+    .hero {
+      padding: 36px 20px 18px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-left {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      background: rgba(240, 226, 206, 0.9);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      width: fit-content;
+    }
+
+    .hero-kicker span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(192, 138, 77, 0.12);
+      font-size: 0.7rem;
+    }
+
+    .hero-title {
+      font-size: clamp(1.7rem, 3vw, 2rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .hero-highlight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .hero-chip {
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(240, 226, 206, 0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent), #d2964c);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 22px rgba(192, 138, 77, 0.4);
+      transform: translateY(0);
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, filter 0.16s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 12px 26px rgba(192, 138, 77, 0.45);
+    }
+
+    .btn-ghost {
+      border-radius: var(--radius-full);
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(192, 138, 77, 0.35);
+      background: rgba(246, 238, 227, 0.9);
+      color: var(--text-sub);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background-color 0.18s ease-out, border-color 0.18s ease-out, transform 0.16s ease-out;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(240, 226, 206, 0.9);
+      border-color: rgba(192, 138, 77, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--text-sub);
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    /* Hero 오른쪽: 이번 버전에서는 비주얼 카드 미사용 */
+    .hero-right {
+      display: none;
+    }
+
+    /* 공통 섹션 컨테이너 (4개 카드) */
+    .sections-grid {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .section-card {
+      border-radius: 0;
+      margin: 0;
+      background: #f7efe2;
+      box-shadow: none;
+      padding: 26px 16px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.2fr);
+      gap: 28px;
+      border-top: 1px solid rgba(167, 120, 72, 0.45);
+      padding-top: 22px;
+    }
+
+    /* 첫 번째 컨테이너는 구분선 제외 */
+    #container-1 .section-card-inner {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .section-headline {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    .section-tag {
+      font-size: 0.76rem;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+
+    .section-tag span {
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(240, 226, 206, 0.9);
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .section-list {
+      margin-top: 10px;
+      display: grid;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-sub);
+    }
+
+    .section-list-item {
+      display: flex;
+      gap: 6px;
+    }
+
+    .section-list-bullet {
+      margin-top: 4px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      flex-shrink: 0;
+    }
+
+    .section-metric-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 0.8rem;
+    }
+
+    .metric-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(246, 238, 227, 0.9);
+      color: var(--text-sub);
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .metric-pill strong {
+      color: var(--text-main);
+    }
+
+    .section-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.78rem;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(240, 226, 206, 0.9);
+      color: var(--text-sub);
+    }
+
+    .section-note {
+      margin-top: auto;
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      opacity: 0.92;
+    }
+
+    .cta-footer {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      align-items: center;
+    }
+
+    .cta-link {
+      font-weight: 600;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 스크롤 등장 애니메이션 공통 */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      filter: blur(3px);
+      transform-origin: center top;
+      transition:
+        opacity var(--transition-slow),
+        transform var(--transition-slow),
+        filter var(--transition-slow);
+    }
+
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    /* 푸터 */
+    .site-footer {
+      padding: 18px 20px 26px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      background: linear-gradient(to top, rgba(240, 226, 206, 0.9), transparent);
+    }
+
+    .footer-inner {
+      width: 100%;
+      margin: 0;
+      border-top: 1px solid rgba(192, 138, 77, 0.25);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      opacity: 0.9;
+    }
+
+    .footer-links span {
+      opacity: 0.5;
+    }
+
+    /* 반응형 */
+    @media (max-width: 880px) {
+      .header-inner {
+        padding-inline: 12px;
+      }
+
+      .main-inner {
+        padding-inline: 12px;
+      }
+
+      .hero {
+        padding: 26px 16px 14px;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .device-card {
+        max-width: 100%;
+      }
+
+      .section-card {
+        padding-inline: 12px;
+      }
+
+      .section-card-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .section-right {
+        border-top: 1px dashed rgba(192, 138, 77, 0.22);
+        padding-top: 12px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        gap: 10px;
+      }
+
+      .main-nav ul {
+        gap: 8px;
+        font-size: 0.78rem;
+      }
+
+      .hero-title {
+        font-size: 1.45rem;
+      }
+
+      .hero-sub {
+        font-size: 0.9rem;
+      }
+
+      .sections-grid {
+        gap: 18px;
+      }
+
+      .section-headline {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-shell">
+    <!-- 헤더 -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-badge">DC</div>
+          <span>Premium Blackbox</span>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html" class="is-primary">HOME</a></li>
+            <li><a href="product.html">PRODUCT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 메인 -->
+    <main>
+      <div class="main-inner">
+        <!-- Hero (배경과 자연스럽게 어우러지는 광고 멘트 영역) -->
+        <section class="hero">
+          <div class="hero-left">
+            <div class="hero-kicker">
+              <span>●</span>
+              Premium Blackbox Dashcam
+            </div>
+            <h1 class="hero-title">
+              오늘도, 내일도<br />
+              당신의 운전을 부드럽게 기록합니다
+            </h1>
+            <p class="hero-sub">
+              보이지 않는 순간까지 책임지는 4K 블랙박스.<br />
+              주행 중에도, 주차 중에도 당신의 시간을 조용히 지켜봅니다.
+            </p>
+            <div class="hero-highlight">
+              <span class="hero-chip">눈이 편안한 야간 화질</span>
+              <span class="hero-chip">충돌 시 자동 저장</span>
+              <span class="hero-chip">스마트폰에서 바로 확인</span>
+            </div>
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="scrollToContainer(1)">
+                어떤 점이 다른지 확인하기
+                <span>↓</span>
+              </button>
+              <button class="btn-ghost" onclick="scrollToContainer(4)">
+                나에게 맞는 타입 찾기
+              </button>
+            </div>
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <div class="hero-meta-dot"></div>
+                24시간 상시 모니터링
+              </div>
+              <div class="hero-meta-item">
+                <div class="hero-meta-dot"></div>
+                주행 · 주차 영상 자동 분류
+              </div>
+              <div class="hero-meta-item">
+                <div class="hero-meta-dot"></div>
+                국내/해외 차량 모두 호환
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 컨테이너 1: 핵심 기능 -->
+        <section class="section-card reveal-section" id="container-1">
+          <div class="section-card-inner">
+            <div>
+              <div class="section-tag"><span>Container 1 · 핵심 기능</span></div>
+              <h2 class="section-headline">주행부터 주차까지, 차량 보호에 꼭 필요한 기능만 담았습니다</h2>
+              <p class="section-desc">
+                사고는 늘 예고 없이 찾아옵니다. Premium Blackbox는 주행·주차·야간 상황을 모두 고려해,
+                꼭 필요한 장면만 또렷하게 남길 수 있도록 설계되었습니다.
+              </p>
+              <div class="section-list">
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>4K UHD 초고화질로 번호판, 차선, 표지판까지 섬세하게 기록</div>
+                </div>
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>야간/터널/역광 환경에서도 디테일을 살려주는 야간 최적화 알고리즘</div>
+                </div>
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>충격 발생 시 자동으로 보호 영역에 저장되는 G-센서 충돌 감지</div>
+                </div>
+              </div>
+              <div class="section-metric-wrap">
+                <div class="metric-pill"><strong>4K</strong> 초고화질 녹화</div>
+                <div class="metric-pill"><strong>60fps</strong> 부드러운 프레임</div>
+                <div class="metric-pill"><strong>3중</strong> 충돌 감지 단계</div>
+              </div>
+            </div>
+            <div class="section-right">
+              <div class="pill-row">
+                <span class="pill">전방 4K 녹화</span>
+                <span class="pill">옵션: 후방 FHD</span>
+                <span class="pill">긴급 저장 버튼</span>
+                <span class="pill">주차 중 이벤트 촬영</span>
+              </div>
+              <p class="section-note">
+                평소에는 조용히, 필요할 때는 강력하게 작동하는 블랙박스답게
+                무의미한 영상은 최소화하고 중요한 순간만 안전하게 간직합니다.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 컨테이너 2: 야간·주차 보안 -->
+        <section class="section-card reveal-section" id="container-2">
+          <div class="section-card-inner">
+            <div>
+              <div class="section-tag"><span>Container 2 · 야간 / 주차 보안</span></div>
+              <h2 class="section-headline">내 차를 지키는 시간은, 시동이 꺼진 뒤부터입니다</h2>
+              <p class="section-desc">
+                퇴근 후 골목길, 아파트 지하주차장, 낯선 주차 구역에서도 Premium Blackbox는
+                차량 주변을 부드럽게 감시하고, 움직임과 충격을 자동으로 감지해 기록합니다.
+              </p>
+              <div class="section-list">
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>움직임 감지 기반의 스마트 주차 모드로 불필요한 저장 최소화</div>
+                </div>
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>저전압 차단 기능으로 배터리 방전을 방지하며 안심 사용</div>
+                </div>
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>문콕, 긁힘, 접촉 사고 등 주차 중 발생하는 이벤트 자동 분류</div>
+                </div>
+              </div>
+            </div>
+            <div class="section-right">
+              <div class="pill-row">
+                <span class="pill">주차 모드 자동 전환</span>
+                <span class="pill">움직임/충격 동시 감지</span>
+                <span class="pill">배터리 보호</span>
+                <span class="pill">이벤트 알림</span>
+              </div>
+              <p class="section-note">
+                나중에 확인해야 할 장면만 깔끔하게 모아 볼 수 있도록
+                주행/주차/이벤트 영상이 자동으로 폴더별 정리됩니다.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 컨테이너 3: 앱 연동 및 GPS -->
+        <section class="section-card reveal-section" id="container-3">
+          <div class="section-card-inner">
+            <div>
+              <div class="section-tag"><span>Container 3 · 모바일 & GPS</span></div>
+              <h2 class="section-headline">핸드폰에서 바로 확인하고, 지도 위에서 다시 돌아보세요</h2>
+              <p class="section-desc">
+                Wi-Fi 앱 연동으로 블랙박스를 분리하지 않고도 영상을 바로 확인하고 공유할 수 있습니다.
+                GPS 기능과 함께라면, 사고 위치와 속도 정보까지 한눈에 확인할 수 있습니다.
+              </p>
+              <div class="section-list">
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>전용 앱으로 실시간 라이브 뷰, 과거 영상 탐색, 파일 내보내기 지원</div>
+                </div>
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>GPS 정보로 사고 구간, 이동 경로, 속도까지 동시에 기록</div>
+                </div>
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>펌웨어 업데이트도 앱에서 간편하게 진행 가능</div>
+                </div>
+              </div>
+            </div>
+            <div class="section-right">
+              <div class="pill-row">
+                <span class="pill">iOS / Android 지원</span>
+                <span class="pill">와이파이 연결</span>
+                <span class="pill">지도 기반 재생</span>
+                <span class="pill">펌웨어 OTA</span>
+              </div>
+              <p class="section-note">
+                사고가 났을 때, 영상과 위치·속도 정보가 함께 있다면
+                보험사나 경찰에도 더 명확하고 설득력 있게 상황을 설명할 수 있습니다.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 컨테이너 4: 추천 타입 & 다음 페이지 유도 -->
+        <section class="section-card reveal-section" id="container-4">
+          <div class="section-card-inner">
+            <div>
+              <div class="section-tag"><span>Container 4 · 어떤 타입을 선택할까?</span></div>
+              <h2 class="section-headline">내 운전 패턴에 딱 맞는 블랙박스 타입을 골라보세요</h2>
+              <p class="section-desc">
+                하루 평균 주행 거리, 주차 환경, 예산에 따라 추천 타입이 달라집니다.
+                가장 중요한 건 “내 차가 자주 겪는 상황”을 정확히 아는 것에서부터 시작됩니다.
+              </p>
+              <div class="section-list">
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>출퇴근 위주 · 비교적 한산한 도로 &rarr; 전방형 4K 모델 추천</div>
+                </div>
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>골목길, 지하주차장, 뒷차 추돌 우려 &rarr; 전·후방 모델 추천</div>
+                </div>
+                <div class="section-list-item">
+                  <div class="section-list-bullet"></div>
+                  <div>장거리/고속도로 주행이 잦은 운전자 &rarr; GPS + 고용량 메모리 구성 추천</div>
+                </div>
+              </div>
+            </div>
+            <div class="section-right">
+              <div class="pill-row">
+                <span class="pill">전방 전용</span>
+                <span class="pill">전·후방 듀얼</span>
+                <span class="pill">상시전원 키트</span>
+                <span class="pill">고용량 메모리</span>
+              </div>
+              <p class="section-note">
+                다음 페이지에서 각 타입별 상세 스펙과 추천 사용 환경을
+                더 자세히 비교해 볼 수 있습니다.
+              </p>
+              <div class="cta-footer">
+                <button class="btn-primary" onclick="goToProduct()">
+                  제품 상세 비교 보러가기
+                </button>
+                <span>혹은 <a href="contact.html" class="cta-link">상담 문의</a>에서 차량에 맞는 구성을 안내받을 수 있어요.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>&copy; 2025 Premium Blackbox Dashcam. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#">개인정보 처리방침</a><span>|</span>
+          <a href="#">이용 약관</a><span>|</span>
+          <a href="contact.html">고객 문의</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 스크롤 등장 & 내비게이션 스크립트 -->
+  <script>
+    // 스크롤 시 컨테이너 순차 등장
+    const revealSections = document.querySelectorAll('.reveal-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            // 한 번 보인 섹션은 더 이상 관찰 안 함
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    revealSections.forEach((section) => observer.observe(section));
+
+    // Hero 버튼에서 특정 컨테이너로 스무스 스크롤
+    function scrollToContainer(index) {
+      const target = document.getElementById(`container-${index}`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // 제품 페이지 이동
+    function goToProduct() {
+      window.location.href = 'product.html';
+    }
+  </script>
+</body>
+
+</html>

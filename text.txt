@@ -1,0 +1,72 @@
+1. Home (메인 랜딩)
+2. Features (제품 기능 소개)
+3. Product Showcase / Shop (제품 목록 + 구매)
+4. Testimonials or Demo (사용자 리뷰나 영상)
+5. Contact (연락 폼)
+6. Footer (브랜드 정보 및 링크)
+
+
+
+------------------------------------------
+[Hero 섹션]
+    ↓
+[제품 소개 Section] ← 제품 한눈에 보기 (이미지 + 한 줄 설명)
+    ↓
+[주요 기능 Section] ← 아이콘 + 기능 설명 (예: 야간촬영, 긴급녹화 등)
+    ↓
+[사용자 리뷰 Section] ← 실제 후기 + 별점
+    ↓
+[시연 영상 Section] ← YouTube embed 또는 mp4 영상
+    ↓
+[CTA: 지금 구매하기] ← 버튼으로 구매 유도
+
+
+------------------------------------------
+ 2. 제품 기능 (Features)
+고해상도 영상
+
+충격 감지 자동 저장
+
+스마트폰 연동
+
+야간 촬영 가능
+
+<section class="features">
+  <h2>제품 주요 기능</h2>
+  <div class="feature-list">
+    <div class="feature">📹 4K UHD 화질</div>
+    <div class="feature">🌙 야간 모드 지원</div>
+    <div class="feature">📱 스마트폰 연동</div>
+    <div class="feature">🚗 충격 자동 저장</div>
+  </div>
+</section>
+
+
+
+--------------------------------------------
+3. 제품 판매 (Shop or Product Page)
+제품 썸네일 이미지
+
+가격
+
+구매 버튼
+
+간단한 스펙 요약
+
+<section class="product">
+  <h2>제품 구매</h2>
+  <div class="product-card">
+    <img src="dashcam.jpg" alt="Dashcam">
+    <h3>[제품명]</h3>
+    <p>₩149,000</p>
+    <button>구매하기</button>
+  </div>
+</section>
+
+
+
+--------------------------------------------
+4. 리뷰나 데모 영상 (Testimonials or Demo)
+사용자 리뷰 2~3개
+
+블랙박스 실제 촬영 영상 클립
