@@ -6,51 +6,104 @@
   <title>Contact | STEPPING STONE</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/styleContact.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="../js/contact.js" defer></script>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="logo">STEPPING STONE</div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="product.html">PRODUCTS</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
-    </nav>
+  <header class="contact-page-header">
+    <div class="contact-header-inner">
+      <a class="contact-brand" href="Home.html" aria-label="Stepping Stone home">
+        <span class="contact-brand-mark" aria-hidden="true">SS</span>
+        <span>
+          <span class="contact-brand-name">Stepping Stone</span>
+          <span class="contact-brand-caption">Driving confidence</span>
+        </span>
+      </a>
+      <nav class="contact-nav" aria-label="Main navigation">
+        <a href="Home.html#about">About</a>
+        <a href="Home.html#products">Products</a>
+        <a href="Home.html#solutions">Solutions</a>
+        <a href="Home.html#news">News</a>
+        <a href="#contact-form-title" aria-current="page">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- ✅ 연락처 정보 섹션 -->
   <div class="wrapper">
     <div class="contact-container">
       <h1>Contact Us</h1>
-      <p><b>Ask What You Curious About</b></br>
-        어쩌구 저쩌구 dash cam 설명</p>
-      
-      
-      <div class="contact-info">
-        <p><strong>Email: </strong> <a href="mailto:info@steppingstone.com">info@steppingstone.com</a></p>
-        <p><strong>Contact Number: </strong> ****-****</p>
-        <p><strong>Opening Time: </strong> MON-FRI, 9 A.M. – 6 P.M.</p>
-        <p><strong>Address: </strong> 38 potts lane potts hill, 2143</p>
-        
-      </div>
+      <p><b>궁금한 점을 문의해 주세요.</b><br>
+        아래 양식을 작성해 주시면 이메일로 답변드리겠습니다.</p>
 
-      <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.9246814090343!2d151.0276698764746!3d-33.89159357321799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12bc642faf7db3%3A0x994bb8ee60132d77!2s38%20Potts%20La%2C%20Potts%20Hill%20NSW%202143!5e0!3m2!1sko!2sau!4v1747191204702!5m2!1sko!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+      <section class="contact-form-section" aria-labelledby="contact-form-title">
+        <h2 id="contact-form-title">문의하기</h2>
+        <p class="form-notice">
+          문의 내용은 FormSubmit을 통해 gloryjang1020@gmail.com으로 전달됩니다.
+          처음 사용 시 수신함에서 인증을 완료해야 이메일 전송이 활성화됩니다.
+        </p>
+        <form class="contact-form" action="https://formsubmit.co/gloryjang1020@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="STEPPING STONE 새 문의">
+          <input type="hidden" name="_template" value="table">
+          <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form-field">
+            <label for="contact-name">이름 <span aria-hidden="true">*</span></label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-email">이메일 <span aria-hidden="true">*</span></label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-phone">연락처</label>
+            <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+
+          <div class="form-field">
+            <label for="contact-topic">문의 유형 <span aria-hidden="true">*</span></label>
+            <select id="contact-topic" name="inquiry_type" required>
+              <option value="" selected disabled>선택해 주세요</option>
+              <option value="제품 문의">제품 문의</option>
+              <option value="구매 및 배송">구매 및 배송</option>
+              <option value="기술 지원">기술 지원</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-address">관련 주소</label>
+            <select id="contact-address" name="address">
+              <option value="" selected>선택해 주세요 (선택 항목)</option>
+              <option value="38 Potts Lane, Potts Hill NSW 2143">회사 주소 (38 Potts Lane, Potts Hill NSW 2143)</option>
+              <option value="other">다른 주소 직접 입력</option>
+              <option value="해당 없음">해당 없음</option>
+            </select>
+          </div>
+
+          <div class="form-field" id="custom-address-field" hidden>
+            <label for="contact-custom-address">주소 입력 <span aria-hidden="true">*</span></label>
+            <input id="contact-custom-address" name="custom_address" type="text" autocomplete="street-address" disabled>
+          </div>
+
+          <div class="form-field form-field-full">
+            <label for="contact-message">문의 내용 <span aria-hidden="true">*</span></label>
+            <textarea id="contact-message" name="message" rows="6" required></textarea>
+          </div>
+
+          <button class="contact-submit" type="submit">문의 보내기</button>
+        </form>
+      </section>
 
     </div>
   </div>
   
-  <!-- ✅ 푸터 -->
   <footer class="site-footer">
-    <p>&copy; 2025 STEPPING STONE. All rights reserved.</p>
+    <p>&copy; 2026 STEPPING STONE. All rights reserved.</p>
     <div class="footer-links">
       <a href="#">Privacy Policy</a> |
-      <a href="#">Terms</a> |
-      <a href="mailto:info@steppingstone.com">Contact Us</a>
+      <a href="#">Terms</a>
     </div>
   </footer>
 </body>
