@@ -52,23 +52,6 @@ languageButtons.forEach((button) => {
 
 applyLanguage(readSavedLanguage() || "en");
 
-// ----- 주소 직접 입력 칸 -----
-const addressSelect = document.getElementById("contact-address");
-const customAddressField = document.getElementById("custom-address-field");
-const customAddressInput = document.getElementById("contact-custom-address");
-
-if (addressSelect && customAddressField && customAddressInput) {
-  const updateCustomAddress = () => {
-    const showCustomAddress = addressSelect.value === "other";
-    customAddressField.hidden = !showCustomAddress;
-    customAddressInput.disabled = !showCustomAddress;
-    customAddressInput.required = showCustomAddress;
-  };
-
-  addressSelect.addEventListener("change", updateCustomAddress);
-  updateCustomAddress();
-}
-
 // ----- Web3Forms 전송: 페이지 이동 없이 보내고 결과 메시지를 표시 -----
 const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
@@ -101,7 +84,6 @@ if (contactForm && formStatus) {
         showStatus("success", "success");
         contactForm.reset();
         if (languageField) languageField.value = currentLanguage;
-        if (addressSelect) addressSelect.dispatchEvent(new Event("change"));
       } else {
         showStatus("failed", "error");
       }
