@@ -38,13 +38,13 @@
       <section class="contact-form-section" aria-labelledby="contact-form-title">
         <h2 id="contact-form-title">문의하기</h2>
         <p class="form-notice">
-          문의 내용은 FormSubmit을 통해 gloryjang1020@gmail.com으로 전달됩니다.
-          처음 사용 시 수신함에서 인증을 완료해야 이메일 전송이 활성화됩니다.
+          보내주신 문의는 담당자 이메일로 전달되며, 입력하신 이메일로 답변드리겠습니다.
         </p>
-        <form class="contact-form" action="https://formsubmit.co/gloryjang1020@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="STEPPING STONE 새 문의">
-          <input type="hidden" name="_template" value="table">
-          <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="7495a15f-b08f-49db-9c82-1379f8e0a2d2">
+          <input type="hidden" name="subject" value="STEPPING STONE 새 문의">
+          <input type="hidden" name="from_name" value="STEPPING STONE 웹사이트">
+          <input class="form-honeypot" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="form-field">
             <label for="contact-name">이름 <span aria-hidden="true">*</span></label>
@@ -93,6 +93,7 @@
           </div>
 
           <button class="contact-submit" type="submit">문의 보내기</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </section>
 
