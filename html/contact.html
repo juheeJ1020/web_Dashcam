@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,92 +19,99 @@
           <span class="contact-brand-caption">Driving confidence</span>
         </span>
       </a>
-      <nav class="contact-nav" aria-label="Main navigation">
-        <a href="Home.html#about">About</a>
-        <a href="Home.html#products">Products</a>
-        <a href="Home.html#solutions">Solutions</a>
-        <a href="Home.html#news">News</a>
-        <a href="#contact-form-title" aria-current="page">Contact</a>
-      </nav>
+      <div class="contact-header-actions">
+        <nav class="contact-nav" aria-label="Main navigation">
+          <a href="Home.html#about" data-en="About" data-ko="브랜드">About</a>
+          <a href="Home.html#products" data-en="Products" data-ko="제품">Products</a>
+          <a href="Home.html#solutions" data-en="Solutions" data-ko="솔루션">Solutions</a>
+          <a href="Home.html#news" data-en="News" data-ko="새 소식">News</a>
+          <a href="#contact-form-title" aria-current="page" data-en="Contact" data-ko="문의하기">Contact</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language">
+          <button type="button" data-language="ko" aria-pressed="false" aria-label="한국어">KR</button>
+          <button type="button" data-language="en" aria-pressed="true" aria-label="English">EN</button>
+        </div>
+      </div>
     </div>
   </header>
 
   <div class="wrapper">
     <div class="contact-container">
-      <h1>Contact Us</h1>
-      <p><b>궁금한 점을 문의해 주세요.</b><br>
-        아래 양식을 작성해 주시면 이메일로 답변드리겠습니다.</p>
+      <h1 data-en="Contact Us" data-ko="문의하기">Contact Us</h1>
+      <p>
+        <b data-en="Have a question? We're here to help." data-ko="궁금한 점을 문의해 주세요.">Have a question? We're here to help.</b><br>
+        <span data-en="Fill in the form below and we'll reply by email." data-ko="아래 양식을 작성해 주시면 이메일로 답변드리겠습니다.">Fill in the form below and we'll reply by email.</span>
+      </p>
 
       <section class="contact-form-section" aria-labelledby="contact-form-title">
-        <h2 id="contact-form-title">문의하기</h2>
-        <p class="form-notice">
-          보내주신 문의는 담당자 이메일로 전달되며, 입력하신 이메일로 답변드리겠습니다.
-        </p>
+        <h2 id="contact-form-title" data-en="Send an enquiry" data-ko="문의하기">Send an enquiry</h2>
+        <p class="form-notice" data-en="Your enquiry goes straight to our team, and we'll reply to the email address you provide." data-ko="보내주신 문의는 담당자 이메일로 전달되며, 입력하신 이메일로 답변드리겠습니다.">Your enquiry goes straight to our team, and we'll reply to the email address you provide.</p>
         <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="7495a15f-b08f-49db-9c82-1379f8e0a2d2">
           <input type="hidden" name="subject" value="STEPPING STONE 새 문의">
           <input type="hidden" name="from_name" value="STEPPING STONE 웹사이트">
+          <input type="hidden" name="language" id="contact-language" value="en">
           <input class="form-honeypot" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="form-field">
-            <label for="contact-name">이름 <span aria-hidden="true">*</span></label>
+            <label for="contact-name"><span data-en="Name" data-ko="이름">Name</span> <span aria-hidden="true">*</span></label>
             <input id="contact-name" name="name" type="text" autocomplete="name" required>
           </div>
 
           <div class="form-field">
-            <label for="contact-email">이메일 <span aria-hidden="true">*</span></label>
+            <label for="contact-email"><span data-en="Email" data-ko="이메일">Email</span> <span aria-hidden="true">*</span></label>
             <input id="contact-email" name="email" type="email" autocomplete="email" required>
           </div>
 
           <div class="form-field">
-            <label for="contact-phone">연락처</label>
+            <label for="contact-phone"><span data-en="Phone" data-ko="연락처">Phone</span></label>
             <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
           </div>
 
           <div class="form-field">
-            <label for="contact-topic">문의 유형 <span aria-hidden="true">*</span></label>
+            <label for="contact-topic"><span data-en="Enquiry type" data-ko="문의 유형">Enquiry type</span> <span aria-hidden="true">*</span></label>
             <select id="contact-topic" name="inquiry_type" required>
-              <option value="" selected disabled>선택해 주세요</option>
-              <option value="제품 문의">제품 문의</option>
-              <option value="구매 및 배송">구매 및 배송</option>
-              <option value="기술 지원">기술 지원</option>
-              <option value="기타">기타</option>
+              <option value="" selected disabled data-en="Please select" data-ko="선택해 주세요">Please select</option>
+              <option value="제품 문의" data-en="Product enquiry" data-ko="제품 문의">Product enquiry</option>
+              <option value="구매 및 배송" data-en="Purchase &amp; delivery" data-ko="구매 및 배송">Purchase &amp; delivery</option>
+              <option value="기술 지원" data-en="Technical support" data-ko="기술 지원">Technical support</option>
+              <option value="기타" data-en="Other" data-ko="기타">Other</option>
             </select>
           </div>
 
           <div class="form-field">
-            <label for="contact-address">관련 주소</label>
+            <label for="contact-address"><span data-en="Related address" data-ko="관련 주소">Related address</span></label>
             <select id="contact-address" name="address">
-              <option value="" selected>선택해 주세요 (선택 항목)</option>
-              <option value="38 Potts Lane, Potts Hill NSW 2143">회사 주소 (38 Potts Lane, Potts Hill NSW 2143)</option>
-              <option value="other">다른 주소 직접 입력</option>
-              <option value="해당 없음">해당 없음</option>
+              <option value="" selected data-en="Please select (optional)" data-ko="선택해 주세요 (선택 항목)">Please select (optional)</option>
+              <option value="38 Potts Lane, Potts Hill NSW 2143" data-en="Our office (38 Potts Lane, Potts Hill NSW 2143)" data-ko="회사 주소 (38 Potts Lane, Potts Hill NSW 2143)">Our office (38 Potts Lane, Potts Hill NSW 2143)</option>
+              <option value="other" data-en="Enter another address" data-ko="다른 주소 직접 입력">Enter another address</option>
+              <option value="해당 없음" data-en="Not applicable" data-ko="해당 없음">Not applicable</option>
             </select>
           </div>
 
           <div class="form-field" id="custom-address-field" hidden>
-            <label for="contact-custom-address">주소 입력 <span aria-hidden="true">*</span></label>
+            <label for="contact-custom-address"><span data-en="Address" data-ko="주소 입력">Address</span> <span aria-hidden="true">*</span></label>
             <input id="contact-custom-address" name="custom_address" type="text" autocomplete="street-address" disabled>
           </div>
 
           <div class="form-field form-field-full">
-            <label for="contact-message">문의 내용 <span aria-hidden="true">*</span></label>
+            <label for="contact-message"><span data-en="Message" data-ko="문의 내용">Message</span> <span aria-hidden="true">*</span></label>
             <textarea id="contact-message" name="message" rows="6" required></textarea>
           </div>
 
-          <button class="contact-submit" type="submit">문의 보내기</button>
+          <button class="contact-submit" type="submit" data-en="Send enquiry" data-ko="문의 보내기">Send enquiry</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </section>
 
     </div>
   </div>
-  
+
   <footer class="site-footer">
     <p>&copy; 2026 STEPPING STONE. All rights reserved.</p>
     <div class="footer-links">
-      <a href="#">Privacy Policy</a> |
-      <a href="#">Terms</a>
+      <a href="#" data-en="Privacy Policy" data-ko="개인정보처리방침">Privacy Policy</a> |
+      <a href="#" data-en="Terms" data-ko="이용약관">Terms</a>
     </div>
   </footer>
 </body>

@@ -594,18 +594,26 @@
         });
       }
 
-      languageButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const language = button.dataset.language;
-          document.documentElement.lang = language;
-          translatable.forEach((element) => {
-            element.textContent = element.dataset[language];
-          });
-          languageButtons.forEach((item) => {
-            item.setAttribute("aria-pressed", String(item === button));
-          });
+      // 선택한 언어를 저장해서 문의 페이지 등 다른 페이지에서도 유지
+      const LANGUAGE_KEY = "steppingStoneLanguage";
+      const applyLanguage = (language) => {
+        document.documentElement.lang = language;
+        translatable.forEach((element) => {
+          element.textContent = element.dataset[language];
         });
+        languageButtons.forEach((item) => {
+          item.setAttribute("aria-pressed", String(item.dataset.language === language));
+        });
+        try { localStorage.setItem(LANGUAGE_KEY, language); } catch (error) {}
+      };
+
+      languageButtons.forEach((button) => {
+        button.addEventListener("click", () => applyLanguage(button.dataset.language));
       });
+
+      let savedLanguage = null;
+      try { savedLanguage = localStorage.getItem(LANGUAGE_KEY); } catch (error) {}
+      if (savedLanguage === "ko") applyLanguage("ko");
 
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {

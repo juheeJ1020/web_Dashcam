@@ -104,6 +104,40 @@ h1 {
   color: #ffffff;
 }
 
+.contact-header-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(15px, 2.1vw, 29px);
+}
+
+.language-switch {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.language-switch button {
+  padding: 4px 5px;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.65);
+  background: transparent;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-switch button[aria-pressed="true"] {
+  color: #10285f;
+  background: #ffffff;
+}
+
 .contact-form-section {
   max-width: 760px;
   margin: 0 auto 3em;
@@ -249,10 +283,20 @@ h1 {
     padding: 16px 0;
   }
 
-  .contact-nav {
+  .contact-header-actions {
     width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .contact-nav {
     flex-wrap: wrap;
     gap: 12px 18px;
+  }
+
+  .language-switch {
+    gap: 2px;
+    padding: 4px;
   }
 
   .contact-nav a {
