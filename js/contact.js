@@ -52,6 +52,47 @@ languageButtons.forEach((button) => {
 
 applyLanguage(readSavedLanguage() || "en");
 
+// ----- 헤더 · 푸터 (Home과 같은 동작) -----
+// 휴대폰 메뉴 열기/닫기
+const menuToggle = document.querySelector(".menu-toggle");
+const navigation = document.getElementById("primary-navigation");
+
+if (menuToggle && navigation) {
+  const setMenu = (open) => {
+    menuToggle.setAttribute("aria-expanded", String(open));
+    menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    navigation.classList.toggle("is-open", open);
+  };
+
+  menuToggle.addEventListener("click", () => {
+    setMenu(menuToggle.getAttribute("aria-expanded") !== "true");
+  });
+  navigation.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
+  });
+}
+
+// 이용약관 / 개인정보처리방침 팝업
+document.querySelectorAll("[data-open-dialog]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const dialog = document.getElementById(button.dataset.openDialog);
+    if (dialog && typeof dialog.showModal === "function") dialog.showModal();
+  });
+});
+
+document.querySelectorAll(".legal-dialog").forEach((dialog) => {
+  dialog.querySelector("[data-close-dialog]")?.addEventListener("click", () => dialog.close());
+  dialog.querySelectorAll("[data-close-link]").forEach((link) => {
+    link.addEventListener("click", () => dialog.close());
+  });
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+});
+
+const currentYear = document.getElementById("current-year");
+if (currentYear) currentYear.textContent = String(new Date().getFullYear());
+
 // ----- Web3Forms 전송: 페이지 이동 없이 보내고 결과 메시지를 표시 -----
 const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");

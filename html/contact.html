@@ -5,33 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | STEPPING STONE</title>
   <!-- 파일을 수정하면 ?v= 숫자를 올려 주세요. 브라우저가 예전 파일 대신 새 파일을 받아요. -->
-  <link rel="stylesheet" href="../css/style.css?v=4">
-  <link rel="stylesheet" href="../css/styleContact.css?v=4">
-  <script src="../js/contact.js?v=4" defer></script>
+  <link rel="stylesheet" href="../css/site-chrome.css?v=5">
+  <link rel="stylesheet" href="../css/styleContact.css?v=5">
+  <script src="../js/contact.js?v=5" defer></script>
 </head>
 
-<body>
-  <header class="contact-page-header">
-    <div class="contact-header-inner">
-      <a class="contact-brand" href="Home.html" aria-label="Stepping Stone home">
-        <span class="contact-brand-mark" aria-hidden="true">SS</span>
-        <span>
-          <span class="contact-brand-name">Stepping Stone</span>
-          <span class="contact-brand-caption">Driving confidence</span>
-        </span>
+<body id="top">
+  <!-- 헤더: Home.html과 같은 구조 (스타일은 css/site-chrome.css) -->
+  <header class="site-header">
+    <div class="site-container header-inner">
+      <a class="brand" href="Home.html" aria-label="Stepping Stone home">
+        <span class="brand-mark" aria-hidden="true">SS</span>
+        <span><span class="brand-name">Stepping Stone</span><span class="brand-caption">Driving confidence</span></span>
       </a>
-      <div class="contact-header-actions">
-        <nav class="contact-nav" aria-label="Main navigation">
-          <a href="Home.html#about" data-en="About" data-ko="브랜드">About</a>
-          <a href="Home.html#products" data-en="Products" data-ko="제품">Products</a>
-          <a href="Home.html#solutions" data-en="Solutions" data-ko="솔루션">Solutions</a>
-          <a href="Home.html#news" data-en="News" data-ko="새 소식">News</a>
-          <a href="#contact-form-title" aria-current="page" data-en="Contact" data-ko="문의하기">Contact</a>
-        </nav>
+      <nav class="main-nav" id="primary-navigation" aria-label="Primary navigation">
+        <a href="Home.html#about"><span data-en="About" data-ko="브랜드">About</span></a>
+        <a href="Home.html#products"><span data-en="Products" data-ko="제품">Products</span></a>
+        <a href="Home.html#solutions"><span data-en="Solutions" data-ko="솔루션">Solutions</span></a>
+        <a href="Home.html#news"><span data-en="News" data-ko="새 소식">News</span></a>
+        <a href="#contact-form-title" aria-current="page"><span data-en="Contact" data-ko="문의하기">Contact</span></a>
+      </nav>
+      <div class="header-actions">
         <div class="language-switch" role="group" aria-label="Language">
           <button type="button" data-language="ko" aria-pressed="false" aria-label="한국어">KR</button>
           <button type="button" data-language="en" aria-pressed="true" aria-label="English">EN</button>
         </div>
+        <a class="button header-quote" href="#contact-form-title"><span data-en="Get a Quote" data-ko="견적 문의">Get a Quote</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open menu">☰</button>
       </div>
     </div>
   </header>
@@ -93,12 +93,36 @@
     </div>
   </div>
 
+  <!-- 푸터: Home.html과 같은 구조 -->
   <footer class="site-footer">
-    <p>&copy; 2026 STEPPING STONE. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="#" data-en="Privacy Policy" data-ko="개인정보처리방침">Privacy Policy</a> |
-      <a href="#" data-en="Terms" data-ko="이용약관">Terms</a>
+    <div class="site-container footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="Home.html"><span class="brand-mark" aria-hidden="true">SS</span><span><span class="brand-name">Stepping Stone</span><span class="brand-caption">Driving confidence</span></span></a>
+        <p data-en="Premium dashcam and fleet solutions for drivers across Australia." data-ko="호주 전역의 운전자에게 프리미엄 블랙박스와 차량 관제 솔루션을 제공합니다.">Premium dashcam and fleet solutions for drivers across Australia.</p>
+      </div>
+      <div class="footer-column"><h3 data-en="Explore" data-ko="둘러보기">Explore</h3><a href="Home.html#about" data-en="About Us" data-ko="회사 소개">About Us</a><a href="Home.html#products" data-en="Products" data-ko="제품">Products</a><a href="Home.html#solutions" data-en="Solutions" data-ko="솔루션">Solutions</a></div>
+      <div class="footer-column"><h3 data-en="Help" data-ko="고객 지원">Help</h3><a href="Home.html#support" data-en="Features" data-ko="주요 기능">Features</a><a href="#contact-form-title" data-en="Installation enquiries" data-ko="설치 문의">Installation enquiries</a><a href="#contact-form-title" data-en="Contact" data-ko="문의하기">Contact</a></div>
+      <div class="footer-column"><h3 data-en="Get in touch" data-ko="연락처">Get in touch</h3><a href="#contact-form-title" data-en="Email us" data-ko="이메일 문의">Email us</a><p data-en="Australia-based customer support" data-ko="호주 현지 고객 지원">Australia-based customer support</p><p>ABN: <span data-en="To be confirmed" data-ko="확인 후 기재">To be confirmed</span></p><p>ACN: <span data-en="To be confirmed" data-ko="확인 후 기재">To be confirmed</span></p></div>
+    </div>
+    <div class="site-container footer-bottom">
+      <span>© <span id="current-year">2026</span> Stepping Stone. <span data-en="All rights reserved." data-ko="All rights reserved.">All rights reserved.</span></span>
+      <div class="footer-legal">
+        <button type="button" data-open-dialog="terms-dialog" data-en="Terms of Use" data-ko="이용약관">Terms of Use</button>
+        <button type="button" data-open-dialog="privacy-dialog" data-en="Privacy Policy" data-ko="개인정보처리방침">Privacy Policy</button>
+        <a href="#top" data-en="Back to top ↑" data-ko="맨 위로 ↑">Back to top ↑</a>
+      </div>
     </div>
   </footer>
+
+  <dialog class="legal-dialog" id="terms-dialog" aria-labelledby="terms-title">
+    <h2 id="terms-title" data-en="Terms of Use" data-ko="이용약관">Terms of Use</h2>
+    <p><span data-en="The current terms will be published here. Please " data-ko="최신 이용약관이 준비되면 이곳에 게시됩니다. 서비스 이용 전 최신 약관은 ">The current terms will be published here. Please </span><a href="#contact-form-title" data-close-link data-en="contact us" data-ko="문의 양식으로 확인해 주세요">contact us</a><span data-en=" for the latest terms before using this service." data-ko="."> for the latest terms before using this service.</span></p>
+    <button class="button button-primary" type="button" data-close-dialog data-en="Close" data-ko="닫기">Close</button>
+  </dialog>
+  <dialog class="legal-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+    <h2 id="privacy-title" data-en="Privacy Policy" data-ko="개인정보처리방침">Privacy Policy</h2>
+    <p><span data-en="The current privacy policy will be published here. For privacy enquiries, " data-ko="최신 개인정보처리방침이 준비되면 이곳에 게시됩니다. 개인정보 관련 문의는 ">The current privacy policy will be published here. For privacy enquiries, </span><a href="#contact-form-title" data-close-link data-en="contact us" data-ko="문의 양식을 이용해 주세요">contact us</a>.</p>
+    <button class="button button-primary" type="button" data-close-dialog data-en="Close" data-ko="닫기">Close</button>
+  </dialog>
 </body>
 </html>
