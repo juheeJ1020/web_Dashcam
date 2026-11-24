@@ -127,9 +127,6 @@
     .products-section { background: var(--paper); }
     .product-topline { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
     .product-topline .section-heading { margin-bottom: 34px; }
-    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
-    .tab { padding: 10px 15px; border: 1px solid #dfe7f2; border-radius: 999px; color: #53627a; background: #fff; font-size: .78rem; font-weight: 750; cursor: pointer; transition: all .2s ease; }
-    .tab:hover, .tab[aria-selected="true"] { border-color: var(--blue); color: #fff; background: var(--blue); }
     .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 17px; }
     .product-card { display: block; overflow: hidden; border: 1px solid #e8edf5; border-radius: 19px; color: inherit; background: #fff; box-shadow: 0 8px 24px rgba(20,43,82,.035); text-decoration: none; transition: transform .25s ease, box-shadow .25s ease; }
     .product-card:hover { box-shadow: var(--shadow); transform: translateY(-5px); }
@@ -215,8 +212,6 @@
       .trust-item { justify-content: flex-start; padding-left: max(24px, calc((100vw - 520px)/2)); }
       .product-topline { display: block; }
       .product-topline .section-heading { margin-bottom: 27px; }
-      .tabs { gap: 7px; }
-      .tab { padding: 9px 12px; font-size: .7rem; }
       .features-layout { grid-template-columns: 1fr; gap: 35px; }
       .contact-panel { align-items: flex-start; flex-direction: column; padding: 34px 26px; }
       .footer-main { grid-template-columns: repeat(2, 1fr); gap: 28px 22px; }
@@ -308,7 +303,7 @@
     .news-section .section-heading h2 { font-size: clamp(2.7rem, 4.5vw, 4rem); text-transform: uppercase; }
     .news-list { border-top: 1px solid #dce3ed; }
     .news-item { display: grid; grid-template-columns: 105px 1fr auto 18px; align-items: center; gap: 18px; min-height: 82px; border-bottom: 1px solid #dce3ed; transition: padding .2s ease, background .2s ease; }
-    .news-item:hover { padding-right: 8px; padding-left: 8px; background: #f8fafd; }
+    a.news-item:hover { padding-right: 8px; padding-left: 8px; background: #f8fafd; }
     .news-date { color: #8491a4; font-size: .69rem; font-variant-numeric: tabular-nums; }
     .news-title { color: #1c2d48; font-family: Georgia, "Times New Roman", serif; font-size: 1rem; }
     .news-type { padding: 6px 9px; border: 1px solid #dbe3ee; border-radius: 99px; color: #5b6d87; font-size: .61rem; }
@@ -345,7 +340,6 @@
       .contact-panel { align-items: flex-start; flex-direction: column; padding: 38px 28px; }
       .product-topline { display: block; }
       .product-topline .section-heading { margin-bottom: 30px; }
-      .tabs { margin-bottom: 28px; }
     }
     @media (max-width: 440px) {
       .branding-image { height: 300px; }
@@ -420,9 +414,7 @@
           <h1><span data-en="Turning ideas" data-ko="모든 여정에">Turning ideas</span><span data-en="into safety." data-ko="안전을 더하다">into safety.</span></h1>
           <p class="hero-lede" data-en="A clearer view of every journey. Premium dashcam technology, thoughtfully chosen for Australian roads." data-ko="모든 여정을 더 선명하게. 호주 도로를 위해 세심하게 선택한 프리미엄 블랙박스 기술을 만나보세요.">A clearer view of every journey. Premium dashcam technology, thoughtfully chosen for Australian roads.</p>
           <div class="hero-actions">
-            <a class="button button-light" href="#products"><span data-en="Explore Solutions" data-ko="솔루션 살펴보기">Explore Solutions</span><span class="arrow" aria-hidden="true">→</span></a>
-            <a class="button button-outline" href="#contact"><span data-en="Talk to our team" data-ko="상담 요청하기">Talk to our team</span></a>
-          </div>
+            <a class="button button-light" href="#products"><span data-en="Explore Solutions" data-ko="솔루션 살펴보기">Explore Solutions</span><span class="arrow" aria-hidden="true">→</span></a>          </div>
           <div class="hero-proof" aria-label="Key capabilities">
             <div class="proof-item"><span class="proof-icon" aria-hidden="true">4K</span><span data-en="Ultra HD video" data-ko="초고화질 영상">Ultra HD video</span></div>
             <div class="proof-item"><span class="proof-icon" aria-hidden="true">AI</span><span data-en="AI safety features" data-ko="AI 안전 기능">AI safety features</span></div>
@@ -455,16 +447,13 @@
       <div class="news-strip" id="local-support">
         <span class="news-label" data-en="LOCAL SUPPORT" data-ko="현지 지원">LOCAL SUPPORT</span>
         <span data-en="Advice for your vehicle, installation and setup." data-ko="차량과 설치 환경에 맞는 상담을 받아보세요.">Advice for your vehicle, installation and setup.</span>
-        <a href="#contact" data-en="Contact us" data-ko="상담하기">Contact us</a>
       </div>
     </main>
   </section>
 
   <aside class="social-rail" aria-label="Quick links">
     <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
-    <a href="#news" aria-label="News and updates">B</a>
-    <a href="#contact" aria-label="Quick support">?</a>
-  </aside>
+    <a href="#news" aria-label="News and updates">B</a>  </aside>
 
   <section class="branding-section section" id="about">
     <div class="site-container branding-layout mx-auto">
@@ -491,31 +480,26 @@
           <p data-en="Choose the right setup for your vehicle, your business and the way you travel." data-ko="차량과 비즈니스, 주행 방식에 알맞은 구성을 찾아보세요.">Choose the right setup for your vehicle, your business and the way you travel.</p>
         </div>
       </div>
-      <div class="tabs" role="tablist" aria-label="Browse by need">
-        <button class="tab" type="button" role="tab" aria-selected="true" data-filter="personal"><span data-en="For Personal Drivers" data-ko="개인 운전자">For Personal Drivers</span></button>
-        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="fleet"><span data-en="For Commercial Fleets" data-ko="상업용 차량">For Commercial Fleets</span></button>
-        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="support"><span data-en="Support & Installation" data-ko="고객 지원 및 설치">Support &amp; Installation</span></button>
-      </div>
       <div class="product-grid">
-        <a class="product-card" data-audience="personal support" href="#contact">
+        <a class="product-card" href="#support">
           <!-- Photo: leoon liang / Unsplash (Unsplash License) https://unsplash.com/photos/zdQgdpzIGFM -->
           <div class="product-art has-photo"><img class="product-photo" src="../source/product-dashcam.png" alt="Dashcam on a windscreen facing a highway at sunset" width="800" height="532" loading="lazy" style="object-position: 92% 50%"><span class="product-tag" data-en="HIGH DEFINITION" data-ko="고해상도">HIGH DEFINITION</span></div>
-          <div class="product-content"><h3 data-en="Front & Rear 4K Dashcam" data-ko="전방 및 후방 4K 블랙박스">Front &amp; Rear 4K Dashcam</h3><p data-en="Detailed road coverage with a setup designed around your vehicle." data-ko="차량에 맞춘 구성으로 도로 상황을 선명하게 기록합니다.">Detailed road coverage with a setup designed around your vehicle.</p><span class="product-link"><span data-en="Explore options" data-ko="제품 상담">Explore options</span><span aria-hidden="true">→</span></span></div>
+          <div class="product-content"><h3 data-en="Front & Rear 4K Dashcam" data-ko="전방 및 후방 4K 블랙박스">Front &amp; Rear 4K Dashcam</h3><p data-en="Detailed road coverage with a setup designed around your vehicle." data-ko="차량에 맞춘 구성으로 도로 상황을 선명하게 기록합니다.">Detailed road coverage with a setup designed around your vehicle.</p><span class="product-link"><span data-en="Learn more" data-ko="자세히 보기">Learn more</span><span aria-hidden="true">→</span></span></div>
         </a>
-        <a class="product-card" data-audience="personal fleet support" href="#solutions">
+        <a class="product-card" href="#solutions">
           <!-- Photo: Samuele Errico Piccarini / Unsplash (Unsplash License) https://unsplash.com/photos/car-driving-on-misty-highway-qAc3UNF8Hm4 -->
           <div class="product-art has-photo"><img class="product-photo" src="../source/product-adas.png" alt="Driver's view of a misty highway at dusk" width="800" height="600" loading="lazy" style="object-position: 50% 40%"><span class="product-tag" data-en="DRIVER ASSIST" data-ko="운전자 보조">DRIVER ASSIST</span></div>
           <div class="product-content"><h3 data-en="AI Driver Safety & ADAS" data-ko="AI 운전자 안전 및 ADAS">AI Driver Safety &amp; ADAS</h3><p data-en="Explore driver-assistance features that can support safer, more informed journeys." data-ko="더욱 안전하고 세심한 주행을 돕는 운전자 보조 기능을 확인해 보세요.">Explore driver-assistance features that can support safer, more informed journeys.</p><span class="product-link"><span data-en="Discover features" data-ko="기능 살펴보기">Discover features</span><span aria-hidden="true">→</span></span></div>
         </a>
-        <a class="product-card" data-audience="fleet support" href="#contact">
+        <a class="product-card" href="#contact">
           <!-- Photo: Bernard Foss / Pexels (Pexels License) https://www.pexels.com/photo/white-vans-parked-on-gray-concrete-road-4620555/ -->
           <div class="product-art has-photo"><img class="product-photo" src="../source/product-fleet.png" alt="Two white commercial vans parked under a blue sky" width="800" height="557" loading="lazy" style="object-position: 50% 70%"><span class="product-tag" data-en="FLEET SOLUTIONS" data-ko="차량 관제 솔루션">FLEET SOLUTIONS</span></div>
           <div class="product-content"><h3 data-en="Commercial Fleet Management" data-ko="상업용 차량 관리">Commercial Fleet Management</h3><p data-en="Connected dashcam options to help teams oversee vehicles and journeys." data-ko="차량과 운행을 관리하는 팀을 위한 커넥티드 블랙박스 옵션입니다.">Connected dashcam options to help teams oversee vehicles and journeys.</p><span class="product-link"><span data-en="Discuss your fleet" data-ko="차량 상담 요청">Discuss your fleet</span><span aria-hidden="true">→</span></span></div>
         </a>
-        <a class="product-card" data-audience="personal fleet support" href="#contact">
+        <a class="product-card" href="#support">
           <!-- Photo: William Hadley / Pexels (Pexels License) https://www.pexels.com/photo/smartphone-gps-navigation-on-car-dashboard-30954662/ -->
           <div class="product-art has-photo"><img class="product-photo" src="../source/product-app.png" alt="Smartphone with a map app on a windscreen mount" width="800" height="533" loading="lazy" style="object-position: 50% 45%"><span class="product-tag" data-en="CONNECTED" data-ko="커넥티드">CONNECTED</span></div>
-          <div class="product-content"><h3 data-en="Mobile App & Cloud" data-ko="모바일 앱 및 클라우드">Mobile App &amp; Cloud</h3><p data-en="View and manage compatible dashcam features from your connected devices." data-ko="연결된 기기에서 호환 블랙박스 기능을 확인하고 관리하세요.">View and manage compatible dashcam features from your connected devices.</p><span class="product-link"><span data-en="Check compatibility" data-ko="호환성 문의">Check compatibility</span><span aria-hidden="true">→</span></span></div>
+          <div class="product-content"><h3 data-en="Mobile App & Cloud" data-ko="모바일 앱 및 클라우드">Mobile App &amp; Cloud</h3><p data-en="View and manage compatible dashcam features from your connected devices." data-ko="연결된 기기에서 호환 블랙박스 기능을 확인하고 관리하세요.">View and manage compatible dashcam features from your connected devices.</p><span class="product-link"><span data-en="Learn more" data-ko="자세히 보기">Learn more</span><span aria-hidden="true">→</span></span></div>
         </a>
       </div>
     </div>
@@ -544,9 +528,9 @@
         <p data-en="The latest updates from our team and product support." data-ko="팀의 소식과 제품 지원에 관한 최신 안내를 확인하세요.">The latest updates from our team and product support.</p>
       </div>
       <div class="news-list">
-        <a class="news-item" href="#contact"><span class="news-date" data-en="CUSTOMER CARE" data-ko="고객 지원">CUSTOMER CARE</span><span class="news-title" data-en="Local customer support for Australian drivers" data-ko="호주 현지 고객 지원 안내">Local customer support for Australian drivers</span><span class="news-type" data-en="Support" data-ko="고객 지원">Support</span><span class="news-arrow" aria-hidden="true">↗</span></a>
-        <a class="news-item" href="#contact"><span class="news-date" data-en="FIRMWARE" data-ko="펌웨어">FIRMWARE</span><span class="news-title" data-en="Firmware updates: keeping your device up to date" data-ko="펌웨어 업데이트: 기기를 최신 상태로 유지하세요">Firmware updates: keeping your device up to date</span><span class="news-type" data-en="Product" data-ko="제품">Product</span><span class="news-arrow" aria-hidden="true">↗</span></a>
-        <a class="news-item" href="#contact"><span class="news-date" data-en="DRIVER GUIDE" data-ko="운전자 가이드">DRIVER GUIDE</span><span class="news-title" data-en="A guide to choosing the right dashcam setup" data-ko="내게 맞는 블랙박스 구성 선택 가이드">A guide to choosing the right dashcam setup</span><span class="news-type" data-en="Guide" data-ko="가이드">Guide</span><span class="news-arrow" aria-hidden="true">↗</span></a>
+        <div class="news-item"><span class="news-date" data-en="CUSTOMER CARE" data-ko="고객 지원">CUSTOMER CARE</span><span class="news-title" data-en="Local customer support for Australian drivers" data-ko="호주 현지 고객 지원 안내">Local customer support for Australian drivers</span><span class="news-type" data-en="Support" data-ko="고객 지원">Support</span></div>
+        <div class="news-item"><span class="news-date" data-en="FIRMWARE" data-ko="펌웨어">FIRMWARE</span><span class="news-title" data-en="Firmware updates: keeping your device up to date" data-ko="펌웨어 업데이트: 기기를 최신 상태로 유지하세요">Firmware updates: keeping your device up to date</span><span class="news-type" data-en="Product" data-ko="제품">Product</span></div>
+        <div class="news-item"><span class="news-date" data-en="DRIVER GUIDE" data-ko="운전자 가이드">DRIVER GUIDE</span><span class="news-title" data-en="A guide to choosing the right dashcam setup" data-ko="내게 맞는 블랙박스 구성 선택 가이드">A guide to choosing the right dashcam setup</span><span class="news-type" data-en="Guide" data-ko="가이드">Guide</span></div>
       </div>
     </div>
   </section>
@@ -573,7 +557,7 @@
         <p data-en="Premium dashcam and fleet solutions for drivers across Australia." data-ko="호주 전역의 운전자에게 프리미엄 블랙박스와 차량 관제 솔루션을 제공합니다.">Premium dashcam and fleet solutions for drivers across Australia.</p>
       </div>
       <div class="footer-column"><h3 data-en="Explore" data-ko="둘러보기">Explore</h3><a href="#about" data-en="About Us" data-ko="회사 소개">About Us</a><a href="#products" data-en="Products" data-ko="제품">Products</a><a href="#solutions" data-en="Solutions" data-ko="솔루션">Solutions</a></div>
-      <div class="footer-column"><h3 data-en="Help" data-ko="고객 지원">Help</h3><a href="#support" data-en="Features" data-ko="주요 기능">Features</a><a href="#contact" data-en="Installation enquiries" data-ko="설치 문의">Installation enquiries</a><a href="contact.html" data-en="Contact" data-ko="문의하기">Contact</a></div>
+      <div class="footer-column"><h3 data-en="Help" data-ko="고객 지원">Help</h3><a href="#support" data-en="Features" data-ko="주요 기능">Features</a><a href="contact.html" data-en="Contact" data-ko="문의하기">Contact</a></div>
       <div class="footer-column"><h3 data-en="Get in touch" data-ko="연락처">Get in touch</h3><a href="contact.html#contact-form-title" data-en="Email us" data-ko="이메일 문의">Email us</a><p data-en="Australia-based customer support" data-ko="호주 현지 고객 지원">Australia-based customer support</p><p>ABN: <span data-en="To be confirmed" data-ko="확인 후 기재">To be confirmed</span></p><p>ACN: <span data-en="To be confirmed" data-ko="확인 후 기재">To be confirmed</span></p></div>
     </div>
     <div class="site-container footer-bottom">
@@ -601,8 +585,6 @@
     (() => {
       const languageButtons = document.querySelectorAll("[data-language]");
       const translatable = document.querySelectorAll("[data-en][data-ko]");
-      const tabs = document.querySelectorAll(".tab[data-filter]");
-      const productCards = document.querySelectorAll(".product-card");
       const menuToggle = document.querySelector(".menu-toggle");
       const navigation = document.querySelector("#primary-navigation");
       const legalButtons = document.querySelectorAll("[data-open-dialog]");
@@ -644,16 +626,6 @@
       let savedLanguage = null;
       try { savedLanguage = localStorage.getItem(LANGUAGE_KEY); } catch (error) {}
       if (savedLanguage === "ko") applyLanguage("ko");
-
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const filter = tab.dataset.filter;
-          tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
-          productCards.forEach((card) => {
-            card.hidden = filter !== "support" && !card.dataset.audience.split(" ").includes(filter);
-          });
-        });
-      });
 
       menuToggle.addEventListener("click", () => {
         const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
